@@ -1,0 +1,47 @@
+benchmark times against default search.cgi
+
+search.cgi vs search_pek.cgi
+
+_pek = re_snip()
+
+"cray fortran compiler"
+
+_pek = 1.3
+def = 1.4
+
+"avoid bottlenecks"
+
+_pek = 1.3
+def = 2.4
+
+"foo"
+
+_pek = 1.4
+def = 2.5
+
+"cray"
+
+_pek = 1.1
+def = 1.3
+
+"this publication"
+
+_pek = 1.4
+def = 1.9
+
+-------------------------
+
+_pek = loop_snip()
+
+"cray fortran compiler"
+
+_pek = 1.5
+def = 1.4
+
+"cray"
+
+_pek = 1.3
+def = 1.3
+
+
+

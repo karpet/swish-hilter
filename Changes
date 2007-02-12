@@ -1,0 +1,24 @@
+Revision history for Perl extension SWISH::HiLiter.
+
+0.01  Fri Nov  5 2004
+
+	- first release
+
+0.02 Fri Nov 12 10:44:51 CST 2004
+
+	- fixed escape=>0 to really work as advertised
+
+0.03 Thu Aug 11 22:30:48 CDT 2005
+
+	- SWISH::API version 0.04 required for stem() to really work.
+	- misc fixes for substr() when snipping.
+
+0.04 Thu Feb 23 09:24:10 CST 2006
+
+	- fixed bug with calling setq() multiple times with single HiLiter
+	  object (thanks to sylvain.amrani@gendarmerie.org for reporting).
+	- ran HiLiter.pm through perltidy for general hygiene
+	- added t/loop.t to test for bug
+	- added dependencies in Makefile.PL
+
+

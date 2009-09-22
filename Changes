@@ -21,4 +21,6 @@ Revision history for Perl extension SWISH::HiLiter.
 	- added t/loop.t to test for bug
 	- added dependencies in Makefile.PL
 
+0.05 xxx
+    * complete rewrite to use Search::Tools
 

@@ -1,13 +1,47 @@
-use 5.006001;
+use strict;
+use warnings;
 use ExtUtils::MakeMaker;
-# See lib/ExtUtils/MakeMaker.pm for details of how to influence
-# the contents of the Makefile that is written.
+use 5.008003;
+
+my $MM_Version = $ExtUtils::MakeMaker::VERSION;
+
+if ( $MM_Version =~ /_/ )    # dev version
+{
+    $MM_Version = eval $MM_Version;
+    die $@ if ($@);
+}
+
 WriteMakefile(
-    NAME              => 'SWISH::HiLiter',
-    VERSION_FROM      => 'HiLiter.pm', # finds $VERSION
-    PREREQ_PM         => { 
-	HTML::HiLiter => 0.11, 
-	#SWISH::API => 0.03, 
-	Test::More => 0.1 
-    }, 
+    NAME          => 'SWISH::HiLiter',
+    VERSION_FROM  => 'lib/SWISH/HiLiter.pm',
+    AUTHOR        => q{Peter Karman <karman@cpan.org>},
+    VERSION_FROM  => 'lib/SWISH/HiLiter.pm',
+    ABSTRACT_FROM => 'lib/SWISH/HiLiter.pm',
+    PL_FILES      => {},
+    PREREQ_PM     => {
+        'Search::Tools' => 0.25,    # requires Search::Tools
+        'Test::More'    => 0,       # Search::Tools req too
+        'File::Slurp'   => 0,       # Search::Tools req too
+        'Data::Dump'    => 0,       # Search::Tools req too
+        'Rose::Object'  => 0,       # Search::Tools req too
+
+    },
+    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean => { FILES    => 'SWISH-HiLiter-*' },
+    ( $MM_Version >= 6.48 ? ( MIN_PERL_VERSION => '5.8.3' ) : () ),
+    ( $MM_Version >= 6.31 ? ( LICENSE          => 'perl' )  : () ),
+    (   $MM_Version <= 6.44
+        ? ()
+        : ( META_MERGE => {
+                resources => {
+                    license  => 'http://dev.perl.org/licenses/',
+                    homepage => 'http://perl.peknet.com/wiki/SWISHHiLiter',
+                    bugtracker =>
+                        'http://rt.cpan.org/NoAuth/Bugs.html?Dist=SWISH-HiLiter',
+                    repository => 'http://svn.peknet.com/perl/SWISH-HiLiter',
+                },
+            }
+        )
+    ),
+
 );

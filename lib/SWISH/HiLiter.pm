@@ -16,7 +16,7 @@ if ( $@
     die "SWISH::HiLiter requires SWISH::API version 0.03 or newer\n";
 }
 
-our $VERSION = 0.04;
+our $VERSION = '0.05';
 
 __PACKAGE__->mk_accessors(qw( hiliter snipper swish query ));
 
@@ -170,6 +170,7 @@ SWISH::HiLiter - simple interface to SWISH::API and Search::Tools
 
   use SWISH::API;
   use SWISH::HiLiter;
+  use Search::Tools::UTF8;
   
   my $query   = "foo OR bar";
   my $swish   = SWISH::API->new( 'my_index' );
@@ -184,11 +185,11 @@ SWISH::HiLiter - simple interface to SWISH::API and Search::Tools
 	
 	my $path 	= $result->Property( "swishdocpath" );
 	my $title 	= $hiliter->light(
-				$result->Property( "swishtitle" )
+				to_utf8( $result->Property( "swishtitle" ) )
 			  );
 	my $snip 	= $hiliter->light(
 			    $hiliter->snip(
-				$result->Property( "swishdescription" )
+				to_utf8( $result->Property( "swishdescription" ) )
 			    )
 			  );
 	my $rank 	= $result->Property( "swishrank" );
@@ -252,9 +253,9 @@ A reference to an array of HTML color names.
 
 The query string you want highlighted.
 
-=item occurrences
+=item occur
 
-How many query matches to display when running snip(). See $SWISH::HiLiter::Occurrences.
+How many query matches to display when running snip(). See also Search::Tools::Snipper.
 
 =item max_chars
 
@@ -275,7 +276,7 @@ algorithms.
 
 Your text is assumed not to contain HTML markup and so it is HTML-escaped by default.
 If you have included markup in your text and want it left as-is, set 'escape' to 0. Highlighting
-should still work, but snip() might break...
+should still work, but snip() might break.
 
 =back
 

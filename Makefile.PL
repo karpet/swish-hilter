@@ -19,7 +19,7 @@ WriteMakefile(
     ABSTRACT_FROM => 'lib/SWISH/HiLiter.pm',
     PL_FILES      => {},
     PREREQ_PM     => {
-        'Search::Tools' => 0.25,    # requires Search::Tools
+        'Search::Tools' => 0.26,    # requires Search::Tools
         'Test::More'    => 0,       # Search::Tools req too
         'File::Slurp'   => 0,       # Search::Tools req too
         'Data::Dump'    => 0,       # Search::Tools req too

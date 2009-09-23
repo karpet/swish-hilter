@@ -236,8 +236,8 @@ SWISH::API 0.04 or later.
 
 =head2 new()
 
-Create a SWISH::HiLiter object. The new() method takes either a single parameter (a
-SWISH::API object), or a hash of parameter key/values. Available parameters include:
+Create a SWISH::HiLiter object. The new() method requires
+a hash of parameter key/values. Available parameters include:
 
 =over
 
@@ -245,32 +245,49 @@ SWISH::API object), or a hash of parameter key/values. Available parameters incl
 
 A SWISH::API object. Version 0.03 or newer. [ Required ]
 
+=item query
+
+The query string you want highlighted. [ Required ]
+
 =item colors
 
 A reference to an array of HTML color names.
 
-=item query
-
-The query string you want highlighted.
-
 =item occur
 
-How many query matches to display when running snip(). See also Search::Tools::Snipper.
+How many query matches to display when running snip(). 
+See also Search::Tools::Snipper.
 
 =item max_chars
 
-Number of words around match to return in snip(). See also Search::Tools::Snipper.
+Number of words around match to return in snip(). 
+See also Search::Tools::Snipper.
 
 =item noshow
 
-Bashful setting. If snip() fails to match any of your query (as can happen if the match
-is beyond the range of SwishDescription as set in your index), don't show anything. The
-default is to show the first I<max_chars> of the text. See also snip=>'dumb'.
+Bashful setting. If snip() fails to match any of your query 
+(as can happen if the match is beyond the range of SwishDescription 
+as set in your index), don't show anything. The
+default is to show the first I<max_chars> of the text.
 
-=item snip
+See the "dump" algorithm in Search::Tools::Snipper.
+
+=item snipper
+
+A Search::Tools::Snipper object. If you do not provide one,
+one will be created for you. The snip() method delegates
+to Search::Tools::Snipper. The snipper() method can get/set
+the internal Snipper object.
 
 See Search::Tools::Snipper for a description of the different snipping
 algorithms.
+
+=item hiliter
+
+A Search::Tools::HiLiter object. If you do not provide one,
+one will be created for you. The light() method delegates
+to Search::Tools::HiLiter. The hiliter() method can get/set
+the internal HiLiter object.
 
 =item escape
 
@@ -279,6 +296,14 @@ If you have included markup in your text and want it left as-is, set 'escape' to
 should still work, but snip() might break.
 
 =back
+
+=head2 init
+
+Called internally.
+
+=head2 snip( I<text> )
+
+Returns extracted snippets from I<text> that include terms from the I<query>.
 
 =head2 light( I<text> )
 
@@ -306,6 +331,10 @@ You should only call set_query() if you are trying to re-use a SWISH::HiLiter
 object, as when under a persistent environment like mod_perl or in a loop.
 
 Like query(), return the internal Search::Tools::Query object representing I<query>.
+
+=head2 setq( I<query> )
+
+For pre-0.04 compatability, setq() is an alias to set_query().
 
 =head1 LIMITATIONS
 

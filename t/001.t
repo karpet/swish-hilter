@@ -11,5 +11,6 @@ SKIP: {
         unless ( $SWISH::API::VERSION && $SWISH::API::VERSION ge '0.03' );
 
     require_ok('SWISH::HiLiter');
+    diag("Testing SWISH::HiLiter version $SWISH::HiLiter::VERSION");
 
 }

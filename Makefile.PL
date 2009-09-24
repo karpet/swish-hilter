@@ -3,6 +3,37 @@ use warnings;
 use ExtUtils::MakeMaker;
 use 5.008003;
 
+# API change warning
+print STDERR<<"EOF";
+
+##
+## WARNING: The SWISH::HiLiter API has changed significantly
+## as of version 0.05. Please read the Changes file and review
+## the SWISH::HiLiter documentation. If you use SWISH::HiLiter in
+## existing code, **you will need to change your code**.
+##
+## Press return to continue (or wait 60 seconds)
+EOF
+
+unless ( $ENV{'AUTOMATED_TESTING'} ) {
+    my %old;
+
+    $old{'ALRM'} = $SIG{'ALRM'} || 'DEFAULT';
+
+    eval {
+
+        # Localize so I only have to restore in my catch block
+        local $SIG{'ALRM'} = sub { die 'alarm' };
+        alarm(60);
+        my $res = <STDIN>;
+        alarm(0);
+    };
+
+    if ( $@ =~ /alarm/ ) {
+        $SIG{'ALRM'} = $old{'ALRM'};
+    }
+}
+
 my $MM_Version = $ExtUtils::MakeMaker::VERSION;
 
 if ( $MM_Version =~ /_/ )    # dev version

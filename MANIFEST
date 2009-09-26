@@ -5,6 +5,8 @@ MANIFEST
 README
 t/001.t
 t/002-loop.t
+t/pod-coverage.t
+t/pod.t
 examples/hiliter.patch
 examples/README
 examples/swishhiliter.cgi

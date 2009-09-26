@@ -60,7 +60,7 @@
      # save for Data::Dumper
 -    $result->{parsed_query} = $parsed_query;
 -
-+    $result->{parsed_query} = $hiliter->setq;
++    $result->{parsed_query} = $hiliter->query->str;
 +    
      # Now create the Template-Toolkit "filter"
  

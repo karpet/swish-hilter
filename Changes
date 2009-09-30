@@ -25,3 +25,6 @@ Revision history for Perl extension SWISH::HiLiter.
     * complete rewrite to use Search::Tools
     * The API has changed. Read the docs, esp the SYNOPSIS.
 
+0.06  30 Sept 2009
+    * fix tests skip count for SWISH::API not installed.
+

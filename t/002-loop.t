@@ -10,7 +10,7 @@ SKIP: {
     skip "SWISH::API is not installed - can't test SWISH::HiLiter", 21 if $@;
 
     skip "SWISH::API 0.04 or higher required", 21
-        unless ( $SWISH::API::VERSION && $SWISH::API::VERSION ge '0.03' );
+        unless ( $SWISH::API::VERSION && $SWISH::API::VERSION gt '0.04' );
 
     require_ok('SWISH::HiLiter');
 

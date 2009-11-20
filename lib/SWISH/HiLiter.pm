@@ -16,7 +16,7 @@ if ( $@
     die "SWISH::HiLiter requires SWISH::API version 0.03 or newer\n";
 }
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 __PACKAGE__->mk_accessors(qw( hiliter snipper swish query ));
 
@@ -47,8 +47,9 @@ sub init {
             return $self->{_use_stemming} ? $self->stem( $_[1] ) : $_[1];
         };
     }
-    %args = $self->_normalize_args(%args);
-    $self->SUPER::init(%args);
+    my %api_ok = map { $_ => $args{$_} } grep { $self->can($_) } keys %args;
+    %api_ok = $self->_normalize_args(%api_ok);
+    $self->SUPER::init(%api_ok);
 
     my $query = $self->query or croak "query required";
 

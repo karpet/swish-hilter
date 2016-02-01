@@ -66,10 +66,10 @@ WriteMakefile(
         : ( META_MERGE => {
                 resources => {
                     license  => 'http://dev.perl.org/licenses/',
-                    homepage => 'http://perl.peknet.com/wiki/SWISHHiLiter',
+                    homepage => 'https://github.com/karpet/swish-hilter',
                     bugtracker =>
                         'http://rt.cpan.org/NoAuth/Bugs.html?Dist=SWISH-HiLiter',
-                    repository => 'http://svn.peknet.com/perl/SWISH-HiLiter',
+                    repository => 'https://github.com/karpet/swish-hilter.git',
                 },
             }
         )

@@ -16,7 +16,7 @@ if ( $@
     die "SWISH::HiLiter requires SWISH::API version 0.03 or newer\n";
 }
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 __PACKAGE__->mk_accessors(qw( hiliter snipper swish query ));
 

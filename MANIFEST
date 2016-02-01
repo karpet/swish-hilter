@@ -2,6 +2,7 @@ Changes
 lib/SWISH/HiLiter.pm
 Makefile.PL
 MANIFEST
+META.yml
 README
 t/001.t
 t/002-loop.t
